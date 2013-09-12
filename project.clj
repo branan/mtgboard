@@ -12,4 +12,5 @@
                  [postgresql "9.1-901.jdbc4"]]
   :ring {:handler mtgboard.core/app
          :init mtgboard.core/init
-         :port 5893})
+         :port 5893
+         :nrepl {:start? true}})

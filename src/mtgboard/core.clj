@@ -1,6 +1,7 @@
 (ns mtgboard.core
   (:require [compojure.core :refer :all]
-            [compojure.handler :as handler]))
+            [compojure.handler :as handler]
+            [mtgboard.db :as db]))
 
 (defroutes v1-routes
   (GET "/players" [] "Listing players, yo")
@@ -15,6 +16,5 @@
   (handler/site app-routes))
 
 (defn init
-  "I should be setting up a database connection"
   []
-  (println "When I grow up, I'm going to make database connections just like my daddy!"))
+  (db/init!))

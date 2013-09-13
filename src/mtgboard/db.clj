@@ -9,6 +9,26 @@
 (defentity players)
 (defentity matches)
 
+(defn list-players
+  []
+  (select players))
+
+(defn list-matches
+  []
+  (select matches))
+
+(defn list-matches-for-player
+  [id]
+  (select matches (where (or {:player1_id id} {:player2_id id}))))
+
+(defn get-player
+  [id]
+  (first (select players (where {:id id}))))
+
+(defn get-match
+  [id]
+  (first (select matches (where {:id id}))))
+
 (defn init-schema-up!
   [_db]
   (exec-raw "CREATE TABLE players (id SERIAL PRIMARY KEY, name TEXT);")

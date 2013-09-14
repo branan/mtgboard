@@ -36,10 +36,14 @@
   (GET "/matches" []
        (response (db/list-matches)))
   (GET "/matches/:match" [match]
-       (response (get-match match))))
+       (response (get-match match)))
+  (POST "/players" [name]
+        (response (db/create-player name)))
+  (POST "/matches" [player1_id player2_id player1_wins player2_wins]
+        (response (db/create-match player1_id player2_id player1_wins player2_wins))))
 
 (defroutes app-routes
-  (context "/api/v1" [] (-> v1-routes json/wrap-json-response)))
+  (context "/api/v1" [] (-> v1-routes json/wrap-json-response json/wrap-json-params)))
 
 (def app
   (handler/site app-routes))

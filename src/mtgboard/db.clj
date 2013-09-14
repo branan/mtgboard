@@ -29,6 +29,18 @@
   [id]
   (first (select matches (where {:id id}))))
 
+(defn create-player
+  [name]
+  (insert players (values {:name name})))
+
+(defn create-match
+  [player1 player2 score1 score2]
+  (insert matches (values
+                   {:player1_id player1
+                    :player2_id player2
+                    :player1_wins score1
+                    :player2_wins score2})))
+
 (defn init-schema-up!
   [_db]
   (exec-raw "CREATE TABLE players (id SERIAL PRIMARY KEY, name TEXT);")

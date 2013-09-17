@@ -1,7 +1,8 @@
 (ns mtgboard.core
   (:require [compojure.core :refer :all]
+            [compojure.route :as route]
             [compojure.handler :as handler]
-            [ring.util.response :refer [response]]
+            [ring.util.response :refer [response redirect]]
             [ring.middleware.json :as json]
             [mtgboard.db :as db]))
 
@@ -47,6 +48,8 @@
         (response (db/create-match player1_id player2_id player1_wins player2_wins))))
 
 (defroutes app-routes
+  (GET "/" [] (redirect "/index.html"))
+  (route/resources "/")
   (context "/api/v1" [] (-> v1-routes json/wrap-json-response json/wrap-json-params)))
 
 (def app

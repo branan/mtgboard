@@ -1,35 +1,17 @@
 # mtgboard
 
-FIXME: description
+A leaderboard for Magic: The Gathering league play
 
 ## Installation
 
-Download from http://example.com/FIXME.
+    git clone git://github.com/branan/mtgboard.git
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar mtgboard-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+    $ lein ring server-headless
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Branan Purvine-Riley and Scott Vandehey
 
 Distributed under the Eclipse Public License, the same as Clojure.

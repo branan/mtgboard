@@ -11,15 +11,19 @@
   [player]
   (select-keys player [:name :wins :id]))
 
-(defn get-match
+(defn fixup-match
   [match]
-  (let [id (Integer/valueOf match)
-        match (db/get-match id)
-        player1 (assoc (db/get-player (:player1_id match)) :wins (:player1_wins match))
+  (let [player1 (assoc (db/get-player (:player1_id match)) :wins (:player1_wins match))
         player2 (assoc (db/get-player (:player2_id match)) :wins (:player2_wins match))]
     (-> match
         (assoc :players (map filter-player-for-match [player1 player2]))
         (dissoc :player1_id :player2_id :player1_wins :player2_wins))))
+
+(defn get-match
+  [match]
+  (let [id (Integer/valueOf match)
+        match (db/get-match id)]
+    (fixup-match match)))
 
 (defn get-player
   [player]

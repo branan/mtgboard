@@ -59,25 +59,8 @@
 (def migrations
   [init-schema])
 
-(defn add-field
-  [conf val key]
-  (if val
-    (assoc conf key val)
-    conf))
-
-(defn dbconfig
-  [db user pass host port]
-  (-> {:db db :user user :password pass}
-      (add-field host :host)
-      (add-field port :port)))
-
 (defn init!
-  []
-  (let [database (or (System/getenv "MTGBOARD_DB") "mtgboard")
-        user (or (System/getenv "MTGBOARD_DBUSER") "mtgboard")
-        password (or (System/getenv "MTGBOARD_DBPASSWORD") "password")
-        host (System/getenv "MTGBOARD_DBHOST")
-        port (System/getenv "MTGBOARD_DBPORT")
-        db (postgres (dbconfig database user password host port))]
+  [dbconfig]
+  (let [db (postgres dbconfig)]
     (default-connection db)
     (migrate-all (map->SqlDatabase db) migrations)))

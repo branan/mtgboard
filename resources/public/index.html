@@ -4,37 +4,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Puppet Labs Magic League</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="css/jquery.ui.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+      jQuery( document ).ready(function( $ ) {
+
+        var availableTags = [
+          "Scott Vandehey",
+          "Branan Purvine-Riley"
+        ];
+        $( "#winner, #loser" ).autocomplete({
+          source: availableTags
+        });
+
+      });
+    </script>
   </head>
   <body>
 
-    <form>
+    <h1>Puppet Labs Magic League</h1>
+
+    <form class="pure-form">
       <fieldset>
         <legend>Record a Match</legend>
         <p>
-          <select id="winner">
-            <option>--</option>
-            <option>Scott Vandehey</option>
-            <option>Branan Purvine-Riley</option>
-          </select>
+          <input type="text" placeholder="Winner" id="winner">
           won a match against
-          <select id="loser">
-            <option>--</option>
-            <option>Scott Vandehey</option>
-            <option>Branan Purvine-Riley</option>
-          </select>
+          <input type="text" placeholder="Loser" id="loser">
           by
           <input type="number" placeholder="2" id="winner-score">
           to
           <input type="number" placeholder="1" id="loser-score">
-          <button>Record this victory for all time!</button>
+          <button class="pure-button pure-button-primary">Record this victory for all time!</button>
         </p>
       </fieldset>
     </form>
 
     <section id="leaderboard">
-      <table border="1">
+      <table class="pure-table pure-table-striped">
         <tr>
           <th rowspan="2">Player</th>
           <th colspan="2">Matches</th>
@@ -47,14 +57,14 @@
           <th>L</th>
         </tr>
         <tr>
-          <th>Scott "Boneshaker" Vandehey</th>
+          <td>Scott "Boneshaker" Vandehey</td>
           <td>9</td>
           <td>2</td>
           <td>29</td>
           <td>17</td>
         </tr>
         <tr>
-          <th>Branan "Chupacabra" Purvine-Riley</th>
+          <td>Branan "Chupacabra" Purvine-Riley</td>
           <td>8</td>
           <td>1</td>
           <td>200</td>

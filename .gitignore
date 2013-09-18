@@ -10,3 +10,13 @@ pom.xml.asc
 .lein-failures
 .lein-plugins
 .lein-repl-history
+*~
+*.sublime-project
+*.sublime-workspace
+compass_app_log.txt
+.sass-cache
+compiled
+compass_generated_stylesheets
+# compass generated sprites
+*-s[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].png
+.DS_Store

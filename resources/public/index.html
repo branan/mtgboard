@@ -12,6 +12,13 @@
     <script>
       jQuery( document ).ready(function( $ ) {
 
+        playerjson = $.ajax('/api/v1/players', {'async':false}).responseText;
+        players = $.parseJSON(playerjson)
+        for(var i = 0; i < players.length; i++) {
+          item = "<option value=\""+players[i].id+"\">"+players[i].name+"</option>"
+          $("#winner").append(item)
+          $("#loser").append(item)
+        }
         $( "#winner, #loser" ).chosen();
 
       });
@@ -27,14 +34,10 @@
         <p>
           <select id="winner">
             <option>Winner</option>
-            <option value="01">Scott Vandehey</option>
-            <option value="02">Branan Purvine-Riley</option>
           </select>
           won a match against
           <select id="loser">
             <option>Loser</option>
-            <option value="01">Scott Vandehey</option>
-            <option value="02">Branan Purvine-Riley</option>
           </select>
           by
           <input type="number" placeholder="2" id="winner-score">

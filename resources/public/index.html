@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Puppet Labs Magic League</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="css/jquery.ui.css">
+    <link rel="stylesheet" href="css/chosen.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="/js/chosen.jquery.min.js"></script>
     <script>
       jQuery( document ).ready(function( $ ) {
 
-        var availableTags = [
-          "Scott Vandehey",
-          "Branan Purvine-Riley"
-        ];
-        $( "#winner, #loser" ).autocomplete({
-          source: availableTags
-        });
+        $( "#winner, #loser" ).chosen();
 
       });
     </script>
@@ -31,9 +25,17 @@
       <fieldset>
         <legend>Record a Match</legend>
         <p>
-          <input type="text" placeholder="Winner" id="winner">
+          <select id="winner">
+            <option>Winner</option>
+            <option value="01">Scott Vandehey</option>
+            <option value="02">Branan Purvine-Riley</option>
+          </select>
           won a match against
-          <input type="text" placeholder="Loser" id="loser">
+          <select id="loser">
+            <option>Loser</option>
+            <option value="01">Scott Vandehey</option>
+            <option value="02">Branan Purvine-Riley</option>
+          </select>
           by
           <input type="number" placeholder="2" id="winner-score">
           to
@@ -72,6 +74,10 @@
         </tr>
       </table>
     </section>
+
+    <footer>
+      <a class="pure-button" href="new.html">Add a New Player</a>
+    </footer>
 
   </body>
 </html>

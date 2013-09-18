@@ -1,1 +1,67 @@
-Stub
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puppet Labs Magic League</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <form>
+      <fieldset>
+        <legend>Record a Match</legend>
+        <p>
+          <select id="winner">
+            <option>--</option>
+            <option>Scott Vandehey</option>
+            <option>Branan Purvine-Riley</option>
+          </select>
+          won a match against
+          <select id="loser">
+            <option>--</option>
+            <option>Scott Vandehey</option>
+            <option>Branan Purvine-Riley</option>
+          </select>
+          by
+          <input type="number" placeholder="2" id="winner-score">
+          to
+          <input type="number" placeholder="1" id="loser-score">
+          <button>Record this victory for all time!</button>
+        </p>
+      </fieldset>
+    </form>
+
+    <section id="leaderboard">
+      <table border="1">
+        <tr>
+          <th rowspan="2">Player</th>
+          <th colspan="2">Matches</th>
+          <th colspan="2">Games</th>
+        </tr>
+        <tr>
+          <th>W</th>
+          <th>L</th>
+          <th>W</th>
+          <th>L</th>
+        </tr>
+        <tr>
+          <th>Scott "Boneshaker" Vandehey</th>
+          <td>9</td>
+          <td>2</td>
+          <td>29</td>
+          <td>17</td>
+        </tr>
+        <tr>
+          <th>Branan "Chupacabra" Purvine-Riley</th>
+          <td>8</td>
+          <td>1</td>
+          <td>200</td>
+          <td>11</td>
+        </tr>
+      </table>
+    </section>
+
+  </body>
+</html>

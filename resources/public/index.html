@@ -10,6 +10,21 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/js/chosen.jquery.min.js"></script>
     <script>
+      function updateLeaderboard() {
+        $(".generated-leader").remove();
+        leadersjson = $.ajax('/api/v1/leaderboard', {'async':false}).responseText;
+        leaders = $.parseJSON(leadersjson);
+        for(var i = 0; i < leaders.length; i++) {
+          leader = leaders[i];
+          item = "<tr class=\"generated-leader\"><td>"+leader.name+"</td>";
+          item += "<td>"+leader["matches-won"]+"</td>";
+          item += "<td>"+leader["matches-lost"]+"</td>";
+          item += "<td>"+leader["games-won"]+"</td>";
+          item += "<td>"+leader["games-lost"]+"</td></tr>";
+          $("#leaderboard table").append(item);
+        }
+      }
+
       jQuery( document ).ready(function( $ ) {
 
         playerjson = $.ajax('/api/v1/players', {'async':false}).responseText;
@@ -21,17 +36,20 @@
         }
         $( "#winner, #loser" ).chosen();
 
-        leadersjson = $.ajax('/api/v1/leaderboard', {'async':false}).responseText;
-        leaders = $.parseJSON(leadersjson);
-        for(var i = 0; i < leaders.length; i++) {
-          leader = leaders[i];
-          item = "<tr><td>"+leader.name+"</td>";
-          item += "<td>"+leader["matches-won"]+"</td>";
-          item += "<td>"+leader["matches-lost"]+"</td>";
-          item += "<td>"+leader["games-won"]+"</td>";
-          item += "<td>"+leader["games-lost"]+"</td></tr>";
-          $("#leaderboard table").append(item);
-        }
+        updateLeaderboard();
+
+        $("#add-game").submit(function(event) {
+          event.preventDefault();
+          game = {}
+          game["winner"] = $("#winner option:selected")[0].getAttribute("value");
+          game["loser"]  = $("#loser option:selected")[0].getAttribute("value");
+          game["winner-score"] = $("#winner-score")[0].value
+          game["loser-score"] = $("#loser-score")[0].value
+          game_json = JSON.stringify(game);
+          $.ajax({type: "POST", url: "/api/v1/matches", contentType: "application/json", async: "false", data: game_json}).done(function() {
+             updateLeaderboard();
+          })
+        })
 
       });
     </script>
@@ -40,7 +58,7 @@
 
     <h1>Puppet Labs Magic League</h1>
 
-    <form class="pure-form">
+    <form class="pure-form" id="add-game">
       <fieldset>
         <legend>Record a Match</legend>
         <div>

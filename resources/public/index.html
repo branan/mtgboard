@@ -46,7 +46,7 @@
           game["winner-score"] = $("#winner-score")[0].value
           game["loser-score"] = $("#loser-score")[0].value
           game_json = JSON.stringify(game);
-          $.ajax({type: "POST", url: "/api/v1/matches", contentType: "application/json", async: "false", data: game_json}).done(function() {
+          $.ajax({type: "POST", url: "/api/v1/matches", contentType: "application/json", data: game_json}).done(function() {
              updateLeaderboard();
           })
         })

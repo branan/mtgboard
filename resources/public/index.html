@@ -13,13 +13,25 @@
       jQuery( document ).ready(function( $ ) {
 
         playerjson = $.ajax('/api/v1/players', {'async':false}).responseText;
-        players = $.parseJSON(playerjson)
+        players = $.parseJSON(playerjson);
         for(var i = 0; i < players.length; i++) {
-          item = "<option value=\""+players[i].id+"\">"+players[i].name+"</option>"
-          $("#winner").append(item)
-          $("#loser").append(item)
+          item = "<option value=\""+players[i].id+"\">"+players[i].name+"</option>";
+          $("#winner").append(item);
+          $("#loser").append(item);
         }
         $( "#winner, #loser" ).chosen();
+
+        leadersjson = $.ajax('/api/v1/leaderboard', {'async':false}).responseText;
+        leaders = $.parseJSON(leadersjson);
+        for(var i = 0; i < leaders.length; i++) {
+          leader = leaders[i];
+          item = "<tr><td>"+leader.name+"</td>";
+          item += "<td>"+leader["matches-won"]+"</td>";
+          item += "<td>"+leader["matches-lost"]+"</td>";
+          item += "<td>"+leader["games-won"]+"</td>";
+          item += "<td>"+leader["games-lost"]+"</td></tr>";
+          $("#leaderboard table").append(item);
+        }
 
       });
     </script>
@@ -60,20 +72,6 @@
           <th>L</th>
           <th>W</th>
           <th>L</th>
-        </tr>
-        <tr>
-          <td>Scott "Boneshaker" Vandehey</td>
-          <td>9</td>
-          <td>2</td>
-          <td>29</td>
-          <td>17</td>
-        </tr>
-        <tr>
-          <td>Branan "Chupacabra" Purvine-Riley</td>
-          <td>8</td>
-          <td>1</td>
-          <td>200</td>
-          <td>11</td>
         </tr>
       </table>
     </section>

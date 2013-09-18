@@ -69,7 +69,7 @@
         (assoc :matches-lost (- total wins))
         (assoc :games-won (games-won id matches))
         (assoc :games-lost (games-lost id matches))
-        (assoc :rating (if total
+        (assoc :rating (if-not (zero? total)
                          (/ wins total)
                          0)))))
 

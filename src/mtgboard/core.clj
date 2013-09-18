@@ -71,7 +71,7 @@
         (assoc :games-lost (games-lost id matches))
         (assoc :rating (if-not (zero? total)
                          (/ wins total)
-                         0)))))
+                         -1)))))
 
 (defn show-leaderboard
   []

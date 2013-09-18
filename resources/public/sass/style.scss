@@ -1,0 +1,35 @@
+/* WARNING! DO NOT EDIT CSS/STYLE.CSS DIRECTLY, IT IS COMPILED! */
+/* instead, edit sass/style.scss, and recompile the sass */
+
+body {
+  margin: 60px;
+}
+
+h1 {
+  color: #f09; // fuschia!
+}
+
+input[type="number"] {
+  width: 4em;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+.pure-form {
+  background: #f4f4f4;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+td:first-child {
+  text-align: right;
+}
+td:nth-child(2),
+td:nth-child(4) {
+  text-align: right;
+}
+td:nth-child(3),
+td:nth-child(5) {
+}

@@ -31,7 +31,7 @@
     <form class="pure-form">
       <fieldset>
         <legend>Record a Match</legend>
-        <p>
+        <div>
           <select id="winner">
             <option>Winner</option>
           </select>
@@ -44,12 +44,12 @@
           to
           <input type="number" placeholder="1" id="loser-score">
           <button class="pure-button pure-button-primary">Record this victory for all time!</button>
-        </p>
+        </div>
       </fieldset>
     </form>
 
     <section id="leaderboard">
-      <table class="pure-table pure-table-striped">
+      <table class="pure-table pure-table-striped pure-table-horizontal">
         <tr>
           <th rowspan="2">Player</th>
           <th colspan="2">Matches</th>
@@ -79,7 +79,12 @@
     </section>
 
     <footer>
-      <a class="pure-button" href="new.html">Add a New Player</a>
+      <nav class="pure-menu pure-menu-open pure-menu-horizontal">
+        <ul>
+          <li class="pure-menu-selected"><a href="/">Leaderboard</a></li>
+          <li><a href="new.html">Add a New Player</a></li>
+        </ul>
+      </nav>
     </footer>
 
   </body>
